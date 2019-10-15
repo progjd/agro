@@ -1,16 +1,30 @@
+
+@if (count($errors) > 0)
+    <div class="alert alert-danger">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li class="red-text">{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
+
+
+
 <div class="input-field">
-<span>Título</span>
-<input type="text" name="titulo" value="{{isset($registro->titulo) ? $registro->titulo : ''}}">
+<label class="control-label">Título</label>
+<input type="text" name="titulo" value="{{isset($registro->titulo) ? $registro->titulo : ''. old('titulo')}}">
 </div>
 
 <div class="input-field">
-<span>Descrição</span>
-<input type="text" name="descricao" value="{{isset($registro->descricao) ? $registro->descricao : ''}}">
+<label class="control-label">Descrição</label>
+<input type="text" name="descricao" value="{{isset($registro->descricao) ? $registro->descricao : ''. old('descricao')}}">
 </div>
 
 <div class="input-field">
-<span>Valor</span>
-<input type="text" name="valor" value="{{isset($registro->valor)? $registro->valor : ''}}">
+<label class="control-label">Valor</label>
+<input type="text" name="valor" value="{{isset($registro->valor)? $registro->valor : ''. old('valor')}}">
 </div>
 
 <div class="file-field input-field">

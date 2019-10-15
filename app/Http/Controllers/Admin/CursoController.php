@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Curso;
+use ValidadesRequests;
 
 
 class CursoController extends Controller
@@ -19,6 +20,16 @@ class CursoController extends Controller
     }
 
     public function salvar(Request $req){
+        $this->validate ($req, [
+            'titulo'=>'required',
+            'descricao'=>'required',
+            'valor'=>'required',
+        ], [
+            'titulo.required'=>'Preencha um título',
+            'descricao.required'=>'Descricao maximo 255 caracteres',
+            'valor.required'=>'Valor nao preenchido',
+        ]);
+        
         $dados = $req->all();
         if(isset($dados['publicado'])){
             $dados['publicado'] = 'sim';

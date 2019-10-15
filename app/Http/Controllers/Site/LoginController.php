@@ -15,6 +15,14 @@ class LoginController extends Controller
     }
 
     public function entrar (Request $req){
+        $this->validate($req, [
+            'email'=>'required|email',
+            'senha'=>'required|min:6',
+        ],[
+            'email.required'=>'Preencha um E-mail',
+            'email.email'=>'Preencha um E-mail válido',
+            'senha.required'=>'Senha minimo 6 caracteres',
+        ]);
         $dados = $req->all();
         if(Auth::Attempt(['email'=>$dados['email'], 'password'=>$dados['senha']])){
             return redirect()->route('admin.cursos');
